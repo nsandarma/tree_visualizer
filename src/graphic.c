@@ -10,21 +10,27 @@ void calculateNodePos(Node *root, int depth, int xStart, int xEnd, int ySpacing)
   calculateNodePos(root->right,depth + 1 ,root->x ,xEnd,ySpacing);
 }
 
-
 // WARNING: Garis nya masih belum rapi !
 void drawTree(Node *root){
   if (root == NULL) return;
-  DrawCircleV((Vector2){ root->x, root->y }, 20.0f, BLUE);
-  DrawText(TextFormat("%d", root->data), root->x - 10, root->y - 10, 20, WHITE);
 
   if (root->left != NULL) {
-    DrawLineEx((Vector2){ root->x, root->y }, (Vector2){ root->left->x, root->left->y }, 2.0f, DARKGRAY);
-    drawTree(root->left);
+    DrawLine(root->x,root->y,root->left->x,root->left->y,BLACK);
   }
   if (root->right != NULL) {
-    DrawLineEx((Vector2){ root->x, root->y }, (Vector2){ root->right->x, root->right->y }, 2.0f, DARKGRAY);
-    drawTree(root->right);
+    DrawLine(root->x,root->y,root->right->x,root->right->y,BLACK);
   }
+  DrawCircle(root->x,root->y, NODE_RADIUS,BLACK);
+  DrawCircleLines(root->x,root->y,NODE_RADIUS,BLACK);
+
+  // Gambar value di tengah node
+  char valueText[10];
+  sprintf(valueText, "%d", root->data);
+  DrawText(valueText, root->x - MeasureText(valueText, 10) / 2,root->y - 5, 15, WHITE);
+
+  // Gambar child nodes
+  drawTree(root->left);
+  drawTree(root->right);
 }
 
 void initialWindow(Node *root){
@@ -33,11 +39,11 @@ void initialWindow(Node *root){
   Camera2D camera = {0};
   camera.offset = (Vector2){ SCREEN_WIDTH / 2.0f, SCREEN_HEIGHT / 2.0f };
   camera.zoom = 0.8f;
-  int x,y,sum = 0;
 
   calculateNodePos(root, 1, 0, SCREEN_WIDTH, 100);
 
   camera.target = (Vector2){ root->x, root->y+450};
+  printf("pos x : %d || pos y : %d\n",root->x,root->y);
 
   SetTargetFPS(60); // Set FPS
   Vector2 lastMousePosition = { 0.0f, 0.0f };

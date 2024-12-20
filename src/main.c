@@ -1,6 +1,8 @@
 #include "graphic.h"
 #include "bst.h"
 
+
+
 int main(){
   Node* root = NULL;
   root = insert(root,10);
@@ -19,6 +21,9 @@ int main(){
   insert(root,190);
   insert(root,121);
   insert(root,111);
+  insert(root,4);
+  insert(root,5);
+  insert(root,0);
   
   initialWindow(root);
 

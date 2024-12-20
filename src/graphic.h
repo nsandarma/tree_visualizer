@@ -6,6 +6,7 @@
 
 #define SCREEN_WIDTH 1920
 #define SCREEN_HEIGHT 1080
+#define NODE_RADIUS 20
 #define TITLE "EXAMPLES RAYLIB"
 
 void calculateNodePos(Node *root, int depth, int xStart, int xEnd, int ySpacing);
