@@ -75,9 +75,9 @@ void printTraversal(Node *root){
 }
 
 // freeNode
-void freeNode(Node *root){
+void freeTree(Node *root){
   if(root == NULL) return;
-  freeNode(root->left);
-  freeNode(root->right);
+  freeTree(root->left);
+  freeTree(root->right);
   free(root);
 }

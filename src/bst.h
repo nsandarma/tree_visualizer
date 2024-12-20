@@ -4,6 +4,7 @@
 
 struct node_st{
   int data;
+  int x,y;
   struct node_st *left,*right;
 };
 typedef struct node_st Node;
@@ -20,7 +21,7 @@ void postOrder(Node *root);
 void preOrder(Node *root);
 void printTraversal(Node *root);
 
-void freeNode(Node *root);
+void freeTree(Node *root);
 
 #endif
 

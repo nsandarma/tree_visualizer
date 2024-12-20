@@ -1,4 +1,5 @@
 #include "graphic.h"
+#include "bst.h"
 
 int main(){
   Node* root = NULL;
@@ -13,10 +14,15 @@ int main(){
   insert(root,12);
   insert(root,9);
   insert(root,1);
+  insert(root,10);
+  insert(root,11);
+  insert(root,190);
+  insert(root,121);
+  insert(root,111);
   
   initialWindow(root);
 
-  freeNode(root);
+  freeTree(root);
 
   return 0;
 }
